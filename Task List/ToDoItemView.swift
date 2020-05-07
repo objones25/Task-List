@@ -11,14 +11,20 @@ import SwiftUI
 struct ToDoItemView: View {
     var title: String = ""
     var createdAt: String = ""
+    var subject: String = ""
+    var dueDate: String = ""
     
     var body: some View {
         HStack{
             VStack(alignment: .leading){
                 Text(title)
                     .font(.headline)
-                Text(createdAt)
+                HStack(alignment: .top){
+                    Text(dueDate)
                     .font(.caption)
+                    Text(subject)
+                    .font(.caption)
+                }
             }
         }
         

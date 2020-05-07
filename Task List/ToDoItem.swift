@@ -12,6 +12,8 @@ import CoreData
 public class ToDoItem:NSManagedObject, Identifiable{
     @NSManaged public var createdAt:Date?
     @NSManaged public var title:String?
+    @NSManaged public var subject:String?
+    @NSManaged public var dueDate:Date?
 }
 
 extension ToDoItem {
