@@ -13,6 +13,7 @@ struct ToDoItemView: View {
     var createdAt: String = ""
     var subject: String = ""
     var dueDate: String = ""
+    var difficulty: String = ""
     
     var body: some View {
         HStack{
@@ -20,9 +21,11 @@ struct ToDoItemView: View {
                 Text(title)
                     .font(.headline)
                 HStack(alignment: .top){
+                    Text(subject)
+                    .font(.caption)
                     Text(dueDate)
                     .font(.caption)
-                    Text(subject)
+                    Text(difficulty)
                     .font(.caption)
                 }
             }

@@ -14,13 +14,14 @@ public class ToDoItem:NSManagedObject, Identifiable{
     @NSManaged public var title:String?
     @NSManaged public var subject:String?
     @NSManaged public var dueDate:Date?
+    @NSManaged public var urgency:String?
 }
 
 extension ToDoItem {
     static func getAllToDoItems() -> NSFetchRequest<ToDoItem>{
         let request:NSFetchRequest<ToDoItem> = ToDoItem.fetchRequest() as!
             NSFetchRequest<ToDoItem>
-        let sortDescriptor = NSSortDescriptor(key: "createdAt", ascending: true)
+        let sortDescriptor = NSSortDescriptor(key: "dueDate", ascending: true)
         
         request.sortDescriptors = [sortDescriptor]
         
