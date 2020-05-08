@@ -30,7 +30,7 @@ struct ToDoItemView: View {
                 }
             }
         }
-        
+// to do items are displayed with name of task on top with additional information below
     }
 }
 

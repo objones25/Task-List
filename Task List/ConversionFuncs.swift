@@ -36,6 +36,7 @@ struct ConversionFuncs{
             return string
         }
     }
+// converts points to a string. Mainly is a placeholder until I get algorithm working
     
     func dateFormatter(date: Date )-> String {
         let formatter1 = DateFormatter()
@@ -45,3 +46,4 @@ struct ConversionFuncs{
     }
     
 }
+// convert items of type date to type string

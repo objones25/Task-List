@@ -16,6 +16,7 @@ public class ToDoItem:NSManagedObject, Identifiable{
     @NSManaged public var dueDate:Date?
     @NSManaged public var urgency:String?
 }
+// don't completely understand this yet. These are all the pieces of data ToDoItem keeps track of. I want to create a public var of type Int16 to store the points for a given task
 
 extension ToDoItem {
     static func getAllToDoItems() -> NSFetchRequest<ToDoItem>{
@@ -27,4 +28,5 @@ extension ToDoItem {
         
         return request
     }
+
 }
