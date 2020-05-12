@@ -19,7 +19,7 @@ struct ContentView: View {
     @State private var selection = 0
     @State private var points: Float = 0
     @State private var functions = ConversionFuncs()
-    @State private var checkpointsChoice: Double = 0
+    @State private var checkpointsChoice: Double = 1
     
     func howManyToMake(howMany: Double?) {
         let createdAt = Date()
