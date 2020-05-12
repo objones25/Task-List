@@ -23,9 +23,9 @@ struct ToDoItemView: View {
                 HStack(alignment: .top){
                     Text(subject)
                     .font(.caption)
-                    Text(dueDate)
+                    Text("due date: \(dueDate)")
                     .font(.caption)
-                    Text(difficulty)
+                    Text("points: \(difficulty)")
                     .font(.caption)
                 }
             }
