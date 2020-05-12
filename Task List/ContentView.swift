@@ -27,11 +27,11 @@ struct ContentView: View {
         let interval = dueDate.timeIntervalSince(createdAt)
         let checkPoint = Double(interval)/(howMany ?? 1)
         var addedInterval = Date()
-        for _ in 0...Int(howMany ?? 1) {
+        for item in 1...Int(howMany ?? 1) {
             addedInterval = addedInterval.addingTimeInterval(checkPoint)
             newToDoItemDueDate = addedInterval
             let toDoItem = ToDoItem(context: self.managedObjectContext)
-            toDoItem.title = self.newToDoItem
+            toDoItem.title = self.newToDoItem + " part \(item)"
             toDoItem.createdAt = Date()
             toDoItem.subject = self.newToDoItemSubject
             toDoItem.dueDate = self.newToDoItemDueDate
@@ -59,7 +59,8 @@ struct ContentView: View {
                     TextField("type subject", text: self.$newToDoItemSubject)
                         .font(.body)
                     DatePicker("due date", selection: self.$newToDoItemDueDate, in: Date().addingTimeInterval(43200)...)
-                        .font(.body)
+                        .font(.caption)
+                        .font(.system(size: 8))
                     HStack {
                         Text("How many checkpoints? number: \(self.checkpointsChoice,  specifier: "%g")").font(.caption)
                             .font(.system(size: 8))
