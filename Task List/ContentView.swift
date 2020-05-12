@@ -45,7 +45,9 @@ struct ContentView: View {
         }
         self.newToDoItem = ""
         self.newToDoItemSubject = ""
-        self.newToDoItemDueDate = Date()
+        self.newToDoItemDueDate = Date().addingTimeInterval(43400)
+        self.checkpointsChoice = 0
+        self.points = 0
     }
     
     var body: some View {
@@ -58,10 +60,15 @@ struct ContentView: View {
                         .font(.body)
                     DatePicker("due date", selection: self.$newToDoItemDueDate, in: Date().addingTimeInterval(43200)...)
                         .font(.body)
-                    Slider(value: self.$checkpointsChoice, in: 1...10, step: 1)
+                    HStack {
+                        Text("How many checkpoints? number: \(self.checkpointsChoice,  specifier: "%g")").font(.caption)
+                            .font(.system(size: 8))
+                        Slider(value: self.$checkpointsChoice, in: 1...10, step: 1)
+                    }
                     HStack{
                         Text("choose points! Value: \(self.points, specifier: "%g")")
-                            .font(.body)
+                            .font(.caption)
+                            .font(.system(size: 8))
                         Slider(value: self.$points, in: 0...250, step: 1)
                     }
                     Button(action: {
