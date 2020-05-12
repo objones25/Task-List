@@ -11,16 +11,42 @@ import SwiftUI
 struct ContentView: View {
     
     @Environment(\.managedObjectContext) var managedObjectContext
-    // keeps track of changes in state managedObjectContext
     @FetchRequest(fetchRequest: ToDoItem.getAllToDoItems()) var toDoItems:FetchedResults<ToDoItem>
     
     @State private var newToDoItem: String = ""
     @State private var newToDoItemSubject: String = ""
-    @State private var newToDoItemDueDate = Date()
+    @State private var newToDoItemDueDate = Date().addingTimeInterval(43400)
+    @State private var selection = 0
     @State private var points: Float = 0
-    
     @State private var functions = ConversionFuncs()
-    //stores all of our functions
+    @State private var checkpointsChoice: Double = 0
+    
+    func howManyToMake(howMany: Double?) {
+        let createdAt = Date()
+        let dueDate = self.newToDoItemDueDate
+        let interval = dueDate.timeIntervalSince(createdAt)
+        let checkPoint = Double(interval)/(howMany ?? 1)
+        var addedInterval = Date()
+        for _ in 0...Int(howMany ?? 1) {
+            addedInterval = addedInterval.addingTimeInterval(checkPoint)
+            newToDoItemDueDate = addedInterval
+            let toDoItem = ToDoItem(context: self.managedObjectContext)
+            toDoItem.title = self.newToDoItem
+            toDoItem.createdAt = Date()
+            toDoItem.subject = self.newToDoItemSubject
+            toDoItem.dueDate = self.newToDoItemDueDate
+            toDoItem.urgency = String(self.points)
+            
+            do {
+                try self.managedObjectContext.save()
+            } catch {
+                print(error)
+            }
+        }
+        self.newToDoItem = ""
+        self.newToDoItemSubject = ""
+        self.newToDoItemDueDate = Date()
+    }
     
     var body: some View {
         NavigationView{
@@ -30,33 +56,16 @@ struct ContentView: View {
                         .font(.body)
                     TextField("type subject", text: self.$newToDoItemSubject)
                         .font(.body)
-                    DatePicker("due date", selection: self.$newToDoItemDueDate)
+                    DatePicker("due date", selection: self.$newToDoItemDueDate, in: Date().addingTimeInterval(43200)...)
                         .font(.body)
+                    Slider(value: self.$checkpointsChoice, in: 1...10, step: 1)
                     HStack{
-                        Text("choose points! value: \(self.points)")
-                        .font(.body)
-                    Slider(value: self.$points, in: 0...250, step: 1)
-// layout for creating a new assignment
+                        Text("choose points! Value: \(self.points, specifier: "%g")")
+                            .font(.body)
+                        Slider(value: self.$points, in: 0...250, step: 1)
                     }
                     Button(action: {
-                        let toDoItem = ToDoItem(context: self.managedObjectContext)
-                        toDoItem.title = self.newToDoItem
-                        toDoItem.createdAt = Date()
-                        toDoItem.subject = self.newToDoItemSubject
-                        toDoItem.dueDate = self.newToDoItemDueDate
-                        toDoItem.urgency = self.functions.urgencyScore(urgency: Int(self.points))
-  // when button is pressed, creates a new to do item
-                        do {
-                            try self.managedObjectContext.save()
-                        } catch {
-                            print(error)
-                        }
-// stores data from to do item
-                        self.newToDoItem = ""
-                        self.newToDoItemSubject = ""
-                        self.newToDoItemDueDate = Date()
-// resets all variables to default
-                        
+                        self.howManyToMake(howMany: self.checkpointsChoice)
                     }){
                         Image(systemName: "plus.circle.fill")
                             .foregroundColor(.green)
@@ -67,18 +76,19 @@ struct ContentView: View {
                 Section(header: Text("To Do's")) {
                     List{
                         ForEach(self.toDoItems) {toDoItem in
-                            ToDoItemView(title: toDoItem.title.unwrap() as! String , subject: toDoItem.subject.unwrap() as! String, dueDate: self.functions.dateFormatter(date: toDoItem.dueDate.unwrap() as! Date), difficulty: toDoItem.urgency.unwrap() as! String)
-// for each to do item created, data is displayed in a view of format ToDoItemView
+                            ToDoItemView(title: toDoItem.title ?? "" , subject: toDoItem.subject ?? "", dueDate: self.functions.dateFormatter(date: toDoItem.dueDate ?? Date()), difficulty: toDoItem.urgency ?? "NA")
                         } .onDelete {IndexSet in
-                            let deleteItem = self.toDoItems[IndexSet.first.unwrap() as! Int]
-                            self.managedObjectContext.delete(deleteItem)
-                            
-                            do {
-                                try self.managedObjectContext.save()
-                            } catch {
-                                print(error)
+                            if let deletedObject = IndexSet.first as Int?{
+                                let deleteItem = self.toDoItems[deletedObject]
+                                self.managedObjectContext.delete(deleteItem)
+                                do {
+                                    try self.managedObjectContext.save()
+                                } catch {
+                                    print(error)
+                                }
+                            } else{
+                                print("could not find chosen Index item")
                             }
-// when item is deleted, item is removed from index and data is saved
                         }
                     }
                 }

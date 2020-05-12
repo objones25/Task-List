@@ -16,7 +16,6 @@
 		B43A3BB524630BC2009463FA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B43A3BB324630BC2009463FA /* LaunchScreen.storyboard */; };
 		B4E8F51D24633A28000C377C /* ToDoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E8F51C24633A28000C377C /* ToDoItem.swift */; };
 		B4E8F51F246346C7000C377C /* ToDoItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E8F51E246346C7000C377C /* ToDoItemView.swift */; };
-		B4E8F521246352BD000C377C /* OptionalProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E8F520246352BD000C377C /* OptionalProtocol.swift */; };
 		B4EC5D3C2464E2F50090F785 /* ConversionFuncs.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EC5D3B2464E2F50090F785 /* ConversionFuncs.swift */; };
 /* End PBXBuildFile section */
 
@@ -32,7 +31,6 @@
 		B43A3BB624630BC2009463FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B4E8F51C24633A28000C377C /* ToDoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoItem.swift; sourceTree = "<group>"; };
 		B4E8F51E246346C7000C377C /* ToDoItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoItemView.swift; sourceTree = "<group>"; };
-		B4E8F520246352BD000C377C /* OptionalProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalProtocol.swift; sourceTree = "<group>"; };
 		B4EC5D3B2464E2F50090F785 /* ConversionFuncs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversionFuncs.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -72,7 +70,6 @@
 				B4EC5D3B2464E2F50090F785 /* ConversionFuncs.swift */,
 				B4E8F51E246346C7000C377C /* ToDoItemView.swift */,
 				B4E8F51C24633A28000C377C /* ToDoItem.swift */,
-				B4E8F520246352BD000C377C /* OptionalProtocol.swift */,
 				B43A3BAE24630BC2009463FA /* Assets.xcassets */,
 				B43A3BB324630BC2009463FA /* LaunchScreen.storyboard */,
 				B43A3BB624630BC2009463FA /* Info.plist */,
@@ -168,7 +165,6 @@
 				B4E8F51F246346C7000C377C /* ToDoItemView.swift in Sources */,
 				B4EC5D3C2464E2F50090F785 /* ConversionFuncs.swift in Sources */,
 				B43A3BAB24630BC2009463FA /* Task_List.xcdatamodeld in Sources */,
-				B4E8F521246352BD000C377C /* OptionalProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
