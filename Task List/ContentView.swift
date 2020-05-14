@@ -75,12 +75,11 @@ struct ContentView: View {
                         .font(.caption)
                         .font(.system(size: 8))
                     // due date of assignment
-                    HStack {
-                        Text("How many checkpoints? number: \(self.checkPointsChoice, specifier: "%g")").font(.caption)
+                        Stepper(value: $checkPointsChoice, in: 1...10, step: 1){
+                            Text("How many homework periods? number: \(self.checkPointsChoice, specifier: "%g")").font(.caption)
                             .font(.system(size: 8))
-                        Slider(value: self.$checkPointsChoice, in: 1...10, step: 1)
-                    }
-                    // choose the number of checkpoints
+                        }
+                    // choose the number of homework periods
                     HStack{
                         Text("choose points! Value: \(self.points, specifier: "%g")")
                             .font(.caption)
