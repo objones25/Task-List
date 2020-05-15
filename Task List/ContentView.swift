@@ -17,7 +17,7 @@ struct ContentView: View {
     @State private var newToDoItemSubject: String = ""
     @State private var newToDoItemDueDate = Date().addingTimeInterval(43400)
     @State private var selection = 0
-    @State private var points: Float = 0
+    @State private var points: Float = 1
     @State private var functions = ConversionFuncs()
     @State private var checkPointsChoice: Double = 1
     // Variables
@@ -33,7 +33,6 @@ struct ContentView: View {
         // finds the interval for each "checkpoint"
         var addedInterval = Date()
         // starting point
-        
         for item in 1...Int(howMany ?? 1) {
             addedInterval = addedInterval.addingTimeInterval(checkPoint)
             // adds interval to next checkpoint
@@ -56,8 +55,8 @@ struct ContentView: View {
         self.newToDoItem = ""
         self.newToDoItemSubject = ""
         self.newToDoItemDueDate = Date().addingTimeInterval(43400)
-        self.checkPointsChoice = 0
-        self.points = 0
+        self.checkPointsChoice = 1
+        self.points = 1
         // resets all variables
     }
     
@@ -84,7 +83,7 @@ struct ContentView: View {
                         Text("choose points! Value: \(self.points, specifier: "%g")")
                             .font(.caption)
                             .font(.system(size: 8))
-                        Slider(value: self.$points, in: 0...250, step: 1)
+                        Slider(value: self.$points, in: 1...250, step: 1)
                     }
                     // choose the number of points assignment is worth
                     Button(action: {
