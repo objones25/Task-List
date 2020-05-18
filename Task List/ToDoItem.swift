@@ -16,6 +16,7 @@ public class ToDoItem:NSManagedObject, Identifiable{
     @NSManaged public var dueDate:Date?
     @NSManaged public var urgency:String?
 }
+// can't take credit for this. Learned this from a tutorial.
 // don't completely understand this yet. These are all the pieces of data ToDoItem keeps track of. I want to create a public var of type Int16 to store the points for a given task
 
 extension ToDoItem {
@@ -30,3 +31,4 @@ extension ToDoItem {
     }
 
 }
+// can't take credit for this. Learned this from a tutorial.

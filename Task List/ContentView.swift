@@ -12,6 +12,7 @@ struct ContentView: View {
     
     @Environment(\.managedObjectContext) var managedObjectContext
     @FetchRequest(fetchRequest: ToDoItem.getAllToDoItems()) var toDoItems:FetchedResults<ToDoItem>
+    // can't take credit for this. Learned this from a tutorial.
     
     @State private var newToDoItem: String = ""
     @State private var newToDoItemSubject: String = ""
@@ -50,6 +51,7 @@ struct ContentView: View {
                 print(error)
             }
             // attempts to save current items
+            // can't take credit for this. Learned this from a tutorial.
         }
         // repeats for desired number of times
         self.newToDoItem = ""
@@ -73,6 +75,7 @@ struct ContentView: View {
                     DatePicker("due date", selection: self.$newToDoItemDueDate, in: Date().addingTimeInterval(43200)...)
                         .font(.caption)
                         .font(.system(size: 8))
+                        .animation(.default)
                     // due date of assignment
                         Stepper(value: $checkPointsChoice, in: 1...10, step: 1){
                             Text("How many homework periods? number: \(self.checkPointsChoice, specifier: "%g")").font(.caption)
